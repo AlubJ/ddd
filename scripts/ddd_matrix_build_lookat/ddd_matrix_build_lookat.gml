@@ -16,7 +16,7 @@
 /// @param zup
 /// @param [resultMatrix]
 
-function ddd_matrix_build_lookat(xfrom, yfrom, zfrom, xto, yto, zto, xup, yup, zup, result_matrix = [])
+function ddd_matrix_build_lookat(xfrom, yfrom, zfrom, xto, yto, zto, xup, yup, zup, result_matrix = array_create(16))
 {
     if ((os_browser == browser_not_a_browser) && ((os_type == os_windows) || (os_type == os_xboxone) || (os_type == os_xboxseriesxs)))
     {

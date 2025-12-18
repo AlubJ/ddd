@@ -11,7 +11,7 @@
 /// @param zfar
 /// @param [resultMatrix]
 
-function ddd_matrix_build_projection_ortho(width, height, znear, zfar, result_matrix = [])
+function ddd_matrix_build_projection_ortho(width, height, znear, zfar, result_matrix = array_create(16))
 {
     if ((os_browser == browser_not_a_browser) && ((os_type == os_windows) || (os_type == os_xboxone) || (os_type == os_xboxseriesxs)))
     {
