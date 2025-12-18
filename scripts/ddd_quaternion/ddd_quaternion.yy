@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"ddd_quaternion",
   "parent":{
-    "name":"DDD",
-    "path":"folders/DDD.yy",
+    "name":"Number Theory",
+    "path":"folders/DDD/Number Theory.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

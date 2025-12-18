@@ -1,0 +1,1 @@
+vertex_submit(the_floor, pr_trianglelist, -1);
