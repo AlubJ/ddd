@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"ddd_quaternion",
   "parent":{
-    "name":"ddd",
-    "path":"ddd.yyp",
+    "name":"DDD",
+    "path":"folders/DDD.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

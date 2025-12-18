@@ -10,8 +10,9 @@
   },
   "defaultScriptType":1,
   "Folders":[
-    {"$GMFolder":"","%Name":"Coord Space Conversion","folderPath":"folders/Coord Space Conversion.yy","name":"Coord Space Conversion","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Matrix Builders","folderPath":"folders/Matrix Builders.yy","name":"Matrix Builders","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Coord Space Conversion","folderPath":"folders/DDD/Coord Space Conversion.yy","name":"Coord Space Conversion","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"DDD","folderPath":"folders/DDD.yy","name":"DDD","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Matrix Builders","folderPath":"folders/DDD/Matrix Builders.yy","name":"Matrix Builders","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[],

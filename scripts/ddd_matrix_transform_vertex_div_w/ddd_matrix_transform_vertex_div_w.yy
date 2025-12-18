@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"ddd_matrix_transform_vertex_div_w",
   "parent":{
-    "name":"ddd",
-    "path":"ddd.yyp",
+    "name":"Coord Space Conversion",
+    "path":"folders/DDD/Coord Space Conversion.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

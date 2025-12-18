@@ -6,7 +6,7 @@
   "name":"ddd_matrix_build_lookat",
   "parent":{
     "name":"Matrix Builders",
-    "path":"folders/Matrix Builders.yy",
+    "path":"folders/DDD/Matrix Builders.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"ddd_world_to_frustrum",
   "parent":{
-    "name":"Coord Space Conversion",
-    "path":"folders/Coord Space Conversion.yy",
+    "name":"DDD",
+    "path":"folders/DDD.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

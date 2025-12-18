@@ -6,7 +6,7 @@
   "name":"ddd_matrices_build_directional_light",
   "parent":{
     "name":"Matrix Builders",
-    "path":"folders/Matrix Builders.yy",
+    "path":"folders/DDD/Matrix Builders.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
