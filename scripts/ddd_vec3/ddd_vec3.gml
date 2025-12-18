@@ -1,5 +1,14 @@
 // Feather disable all
 
+/**
+ * Creates a new vector3, as an array of three numbers.
+ * You can index the components of a vector3 directly, or use the macros DDD_X, DDD_Y, and DDD_Z if you're averse to numbers in your code.
+ * @param {real} x
+ * @param {real} y
+ * @param {real} z
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3(x, y, z, out = array_create(3)) {
     out[@ 0] = x;
     out[@ 1] = y;
@@ -8,10 +17,21 @@ function ddd_vec3(x, y, z, out = array_create(3)) {
 }
 
 #region Boring stuff
+/**
+ * Returns a string representing the vector3, in the nice (x, y, z) that makes math people happy
+ * @param {array<real>} vec3 The vector to stringify
+ * @returns {string}
+ */
 function ddd_vec3_to_string(vec3) {
     return string("({0}, {1}, {2})", vec3[0], vec3[1], vec3[2]);
 }
 
+/**
+ * Returns a clone of a vector3
+ * @param {array<real>} vec3 The vector3 to clone
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_clone(vec3, out = array_create(3)) {
     out[@ 0] = vec3[0];
     out[@ 1] = vec3[1];
@@ -19,6 +39,13 @@ function ddd_vec3_clone(vec3, out = array_create(3)) {
     return out;
 }
 
+/**
+ * I'm pretty sure this is wrong
+ * @param {array<real>} a The first vec3
+ * @param {array<real>} b The second vec3
+ * @param {array<bool>} [out]=array_create(3) Description
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_equals(a, b, out = array_create(3)) {
     out[@ 0] = (a[0] == b[0]);
     out[@ 1] = (a[1] == b[1]);
@@ -28,6 +55,11 @@ function ddd_vec3_equals(a, b, out = array_create(3)) {
 #endregion
 
 #region Presets
+/**
+ * Returns a vector3 with each component set to zero.
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_zero(out = array_create(3)) {
     out[@ 0] = 0;
     out[@ 1] = 0;
@@ -35,6 +67,11 @@ function ddd_vec3_zero(out = array_create(3)) {
     return out;
 }
 
+/**
+ * Returns a vector3 with each component set to +1.
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_one(out = array_create(3)) {
     out[@ 0] = 1;
     out[@ 1] = 1;
@@ -42,6 +79,11 @@ function ddd_vec3_one(out = array_create(3)) {
     return out;
 }
 
+/**
+ * Returns a vector3 with each component set to infinity.
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_infinity(out = array_create(3)) {
     out[@ 0] = infinity;
     out[@ 1] = infinity;
@@ -49,6 +91,11 @@ function ddd_vec3_infinity(out = array_create(3)) {
     return out;
 }
 
+/**
+ * Function Description
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_minus_infinity(out = array_create(3)) {
     out[@ 0] = -infinity;
     out[@ 1] = -infinity;
@@ -58,6 +105,13 @@ function ddd_vec3_minus_infinity(out = array_create(3)) {
 #endregion
 
 #region Basic arithmetic
+/**
+ * Performs addition between a vec3 and another value, component-wise. The other value may be another vec3, or a scalar.
+ * Use the specific vec3 addition functions if you know what the type is for a mild performance boost.
+ * @param {array<real>} vec3 The vector
+ * @param {any} operand The operand, either a vector or a scalar
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ */
 function ddd_vec3_add(vec3, operand, out = array_create(3)) {
     if (is_numeric(operand)) {
         return ddd_vec3_add_scalar(vec3, operand, out);
@@ -65,6 +119,13 @@ function ddd_vec3_add(vec3, operand, out = array_create(3)) {
     return ddd_vec3_add_vec3(vec3, operand, out);
 }
 
+/**
+ * Performs addition between a vec3 and a scalar value, component-wise.
+ * @param {array<real>} a The first vec3
+ * @param {array<real>} b The second vec3
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_add_vec3(a, b, out = array_create(3)) {
     out[@ 0] = a[0] + b[0];
     out[@ 1] = a[1] + b[1];
@@ -72,6 +133,13 @@ function ddd_vec3_add_vec3(a, b, out = array_create(3)) {
     return out;
 }
 
+/**
+ * Performs addition between a vec3 and a scalar value.
+ * @param {array<real>} vec3 The vector
+ * @param {any*} scalar The scalar
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_add_scalar(vec3, scalar, out = array_create(3)) {
     out[@ 0] = vec3[0] + scalar;
     out[@ 1] = vec3[1] + scalar;
@@ -79,6 +147,13 @@ function ddd_vec3_add_scalar(vec3, scalar, out = array_create(3)) {
     return out;
 }
 
+/**
+ * Performs subtraction between a vec3 and another value, component-wise. The other value may be another vec3, or a scalar.
+ * Use the specific vec3 subtraction functions if you know what the type is for a mild performance boost.
+ * @param {array<real>} vec3 The vector
+ * @param {any} operand The operand, either a vector or a scalar
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ */
 function ddd_vec3_sub(vec3, operand, out = array_create(3)) {
     if (is_numeric(operand)) {
         return ddd_vec3_sub_scalar(vec3, operand, out);
@@ -86,6 +161,13 @@ function ddd_vec3_sub(vec3, operand, out = array_create(3)) {
     return ddd_vec3_sub_vec3(vec3, operand, out);
 }
 
+/**
+ * Performs subtraction between a vec3 and a scalar value, component-wise.
+ * @param {array<real>} a The first vec3
+ * @param {array<real>} b The second vec3
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_sub_vec3(a, b, out = array_create(3)) {
     out[@ 0] = a[0] - b[0];
     out[@ 1] = a[1] - b[1];
@@ -93,6 +175,13 @@ function ddd_vec3_sub_vec3(a, b, out = array_create(3)) {
     return out;
 }
 
+/**
+ * Performs subtraction between a vec3 and a scalar value.
+ * @param {array<real>} vec3 The vector
+ * @param {any*} scalar The scalar
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_sub_scalar(vec3, scalar, out = array_create(3)) {
     out[@ 0] = vec3[0] - scalar;
     out[@ 1] = vec3[1] - scalar;
@@ -100,6 +189,13 @@ function ddd_vec3_sub_scalar(vec3, scalar, out = array_create(3)) {
     return out;
 }
 
+/**
+ * Performs multiplication between a vec3 and another value, component-wise. The other value may be another vec3, or a scalar.
+ * Use the specific vec3 multiplication functions if you know what the type is for a mild performance boost.
+ * @param {array<real>} vec3 The vector
+ * @param {any} operand The operand, either a vector or a scalar
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ */
 function ddd_vec3_mul(vec3, operand, out = array_create(3)) {
     if (is_numeric(operand)) {
         return ddd_vec3_mul_scalar(vec3, operand, out);
@@ -107,6 +203,13 @@ function ddd_vec3_mul(vec3, operand, out = array_create(3)) {
     return ddd_vec3_mul_vec3(vec3, operand, out);
 }
 
+/**
+ * Performs multiplication between a vec3 and a scalar value, component-wise.
+ * @param {array<real>} a The first vec3
+ * @param {array<real>} b The second vec3
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_mul_vec3(a, b, out = array_create(3)) {
     out[@ 0] = a[0] * b[0];
     out[@ 1] = a[1] * b[1];
@@ -114,6 +217,13 @@ function ddd_vec3_mul_vec3(a, b, out = array_create(3)) {
     return out;
 }
 
+/**
+ * Performs multiplication between a vec3 and a scalar value.
+ * @param {array<real>} vec3 The vector
+ * @param {any*} scalar The scalar
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_mul_scalar(vec3, scalar, out = array_create(3)) {
     out[@ 0] = vec3[0] * scalar;
     out[@ 1] = vec3[1] * scalar;
@@ -121,6 +231,13 @@ function ddd_vec3_mul_scalar(vec3, scalar, out = array_create(3)) {
     return out;
 }
 
+/**
+ * Performs division between a vec3 and another value, component-wise. The other value may be another vec3, or a scalar.
+ * Use the specific vec3 division functions if you know what the type is for a mild performance boost.
+ * @param {array<real>} vec3 The vector
+ * @param {any} operand The operand, either a vector or a scalar
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ */
 function ddd_vec3_div(vec3, operand, out = array_create(3)) {
     if (is_numeric(operand)) {
         return ddd_vec3_div_scalar(vec3, operand, out);
@@ -128,6 +245,13 @@ function ddd_vec3_div(vec3, operand, out = array_create(3)) {
     return ddd_vec3_div_vec3(vec3, operand, out);
 }
 
+/**
+ * Performs division between a vec3 and a scalar value, component-wise.
+ * @param {array<real>} a The first vec3
+ * @param {array<real>} b The second vec3
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_div_vec3(a, b, out = array_create(3)) {
     out[@ 0] = a[0] / b[0];
     out[@ 1] = a[1] / b[1];
@@ -135,6 +259,13 @@ function ddd_vec3_div_vec3(a, b, out = array_create(3)) {
     return out;
 }
 
+/**
+ * Performs division between a vec3 and a scalar value.
+ * @param {array<real>} vec3 The vector
+ * @param {any*} scalar The scalar
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_div_scalar(vec3, scalar, out = array_create(3)) {
     out[@ 0] = vec3[0] / scalar;
     out[@ 1] = vec3[1] / scalar;
@@ -144,6 +275,15 @@ function ddd_vec3_div_scalar(vec3, scalar, out = array_create(3)) {
 #endregion
 
 #region Bounds
+/**
+ * 
+ * Returns a vector3 with each component clamped between the same component on the upper and lower bound vectors.
+ * @param {array<real>} vec3 Description
+ * @param {array<real>} a The lower bound vec3
+ * @param {array<real>} b The upper bound vec3
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_clamp(vec3, a, b, out = array_create(3)) {
     out[@ 0] = clamp(vec3[0], a[0], b[0]);
     out[@ 1] = clamp(vec3[1], a[1], b[1]);
@@ -151,6 +291,15 @@ function ddd_vec3_clamp(vec3, a, b, out = array_create(3)) {
     return out;
 }
 
+/**
+ * Returns a vector3 with the magnitude set to the specified value. This can be used as a general version of `ddd_vec3_normalize`.
+ * This will return nonsense if the input vector is the zero vector.
+ * You can modify the original vector instead of creating a new one by passing its reference as the output.
+ * @param {array<real>} vec3 The vector
+ * @param {real} mag The magnitude to set the vector to
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_clamp_magnitude(vec3, mag, out = array_create(3)) {
     var d = point_distance_3d(0, 0, 0, vec3[0], vec3[1], vec3[2]) / mag;
     out[@ 0] = vec3[0] / d;
@@ -159,29 +308,55 @@ function ddd_vec3_clamp_magnitude(vec3, mag, out = array_create(3)) {
     return out;
 }
 
-function ddd_vec3_min(vec3, value, out = array_create(3)) {
-    out[@ 0] = min(vec3[0], value[0]);
-    out[@ 1] = min(vec3[1], value[1]);
-    out[@ 2] = min(vec3[2], value[2]);
+/**
+ * Returns a vector3 with each component containing the smaller of the same component on the input vectors.
+ * @param {array<real>} a The first vec3 to compare
+ * @param {array<real>} b The second vec3 to compare
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
+function ddd_vec3_min(a, b, out = array_create(3)) {
+    out[@ 0] = min(a[0], b[0]);
+    out[@ 1] = min(a[1], b[1]);
+    out[@ 2] = min(a[2], b[2]);
     return out;
 }
 
-function ddd_vec3_max(vec3, value, out = array_create(3)) {
-    out[@ 0] = max(vec3[0], value[0]);
-    out[@ 1] = max(vec3[1], value[1]);
-    out[@ 2] = max(vec3[2], value[2]);
+/**
+ * Returns a vector3 with each component containing the larger of the same component on the input vectors.
+ * @param {array<real>} a The first vec3 to compare
+ * @param {array<real>} b The second vec3 to compare
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
+function ddd_vec3_max(a, b, out = array_create(3)) {
+    out[@ 0] = max(a[0], b[0]);
+    out[@ 1] = max(a[1], b[1]);
+    out[@ 2] = max(a[2], b[2]);
     return out;
 }
 #endregion
 
 #region Number bits
-function ddd_vec3_abs(vec3, mag, out = array_create(3)) {
+/**
+ * Returns a vector containing the absolute value of each component of the original vector.
+ * @param {array<real>} vec3 The vector
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
+function ddd_vec3_abs(vec3, out = array_create(3)) {
     out[@ 0] = abs(vec3[0]);
     out[@ 1] = abs(vec3[1]);
     out[@ 2] = abs(vec3[2]);
     return out;
 }
 
+/**
+ * Returns a vector containing the fractional part of each component the original vector.
+ * @param {array<real>} vec3 The vector
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_frac(vec3, out = array_create(3)) {
     out[@ 0] = frac(vec3[0]);
     out[@ 1] = frac(vec3[1]);
@@ -189,6 +364,13 @@ function ddd_vec3_frac(vec3, out = array_create(3)) {
     return out;
 }
 
+/**
+ * Rounds each of the components of a vector up to the next smallest integer.
+ * This will not modify the original vector, unless you pass its reference as the output parameter.
+ * @param {array<real>} vec3 The vector
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_floor(vec3, out = array_create(3)) {
     out[@ 0] = floor(vec3[0]);
     out[@ 1] = floor(vec3[1]);
@@ -196,6 +378,13 @@ function ddd_vec3_floor(vec3, out = array_create(3)) {
     return out;
 }
 
+/**
+ * Rounds each of the components of a vector up to the next largest integer.
+ * This will not modify the original vector, unless you pass its reference as the output parameter.
+ * @param {array<real>} vec3 The vector
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_ceil(vec3, out = array_create(3)) {
     out[@ 0] = ceil(vec3[0]);
     out[@ 1] = ceil(vec3[1]);
@@ -203,6 +392,14 @@ function ddd_vec3_ceil(vec3, out = array_create(3)) {
     return out;
 }
 
+/**
+ * Rounds each of the components of a vector to an integer, using bankers' rounding:
+ * https://stackoverflow.com/questions/45223778/is-bankers-rounding-really-more-numerically-stable
+ * This will not modify the original vector, unless you pass its reference as the output parameter.
+ * @param {array<real>} vec3 The vector
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_round(vec3, out = array_create(3)) {
     out[@ 0] = round(vec3[0]);
     out[@ 1] = round(vec3[1]);
@@ -212,14 +409,35 @@ function ddd_vec3_round(vec3, out = array_create(3)) {
 #endregion
 
 #region All of the other stuff
+/**
+ * Calculates the magnitude of a vector, or how far from the origin it is.
+ * @param {array<real>} vec3 The vector
+ * @returns {real}
+ */
 function ddd_vec3_mag(vec3) {
     return point_distance_3d(0, 0, 0, vec3[0], vec3[1], vec3[2]);
 }
 
+/**
+ * Calculates the dot product of two vectors. This is often used as a measure of how similar two vectors are:
+ * https://en.wikipedia.org/wiki/Dot_product
+ * @param {array<real>} a The first vec3
+ * @param {array<real>} b The second vec3
+ * @returns {real}
+ */
 function ddd_vec3_dot(a, b) {
     return dot_product_3d(a[0], a[1], a[2], b[0], b[1], b[2]);
 }
 
+/**
+ * Normaliz(s)es a vector, setting its magnitude equal to 1 but preserving the relative proportions of its components:
+ * https://en.wikipedia.org/wiki/Unit_vector
+ * This will return nonsense if the input vector is the zero vector.
+ * You can modify the original vector instead of creating a new one by passing its reference as the output.
+ * @param {array<real>} vec3 The vec3 to normaliz(s)e
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_normalize(vec3, out = array_create(3)) {
     var mag = point_distance_3d(0, 0, 0, vec3[0], vec3[1], vec3[2]);
     out[@ 0] = vec3[0] / mag;
@@ -228,28 +446,62 @@ function ddd_vec3_normalize(vec3, out = array_create(3)) {
     return out;
 }
 
-function ddd_vec3_project(vec3, dir, out = array_create(3)) {
-    var f = dot_product_3d(vec3[0], vec3[1], vec3[2], dir[0], dir[1], dir[2]) / dot_product_3d(dir[0], dir[1], dir[2], dir[0], dir[1], dir[2]);
-    out[@ 0] = dir[0] * f;
-    out[@ 1] = dir[1] * f;
-    out[@ 2] = dir[2] * f;
+/**
+ * Projects one vector onto another; this can be used to figure out how much of vector `a` heads in the direction of vector `b`.
+ * https://en.wikipedia.org/wiki/Vector_projection
+ * @param {array<real>} a The vec3 to do the projecting
+ * @param {array<real>} b The vec3 to be projected onto
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
+function ddd_vec3_project(a, b, out = array_create(3)) {
+    var f = dot_product_3d(a[0], a[1], a[2], b[0], b[1], b[2]) / dot_product_3d(b[0], b[1], b[2], b[0], b[1], b[2]);
+    out[@ 0] = b[0] * f;
+    out[@ 1] = b[1] * f;
+    out[@ 2] = b[2] * f;
     return out;
 }
 
-function ddd_vec3_lerp(vec3, target, amount, out = array_create(3)) {
-    out[@ 0] = lerp(vec3[0], target[0], amount[0]);
-    out[@ 1] = lerp(vec3[1], target[1], amount[1]);
-    out[@ 2] = lerp(vec3[2], target[2], amount[2]);
+/**
+ * Linearly interpolates one vector to another, moving between the two by a specified percentage:
+ * https://en.wikipedia.org/wiki/Linear_interpolation
+ * @param {array<real>} a The first vec3
+ * @param {array<real>} b The second vec3
+ * @param {array<real>} amount The normalized percentage to interpolate from a to b; values outside the range of [0, 1] will extrapolate instead
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
+function ddd_vec3_lerp(a, b, amount, out = array_create(3)) {
+    out[@ 0] = lerp(a[0], b[0], amount[0]);
+    out[@ 1] = lerp(a[1], b[1], amount[1]);
+    out[@ 2] = lerp(a[2], b[2], amount[2]);
     return out;
 }
 
-function ddd_vec3_angle(vec3, value) {
+/**
+ * Calculates the angle between two vectors.
+ * @param {array<real>} a The first vec3
+ * @param {array<real>} b The second vec3
+ * @returns {real}
+ */
+function ddd_vec3_angle(a, b) {
     return darccos(
-        dot_product_3d(vec3[0], vec3[1], vec3[2], value[0], value[1], value[2]) /
-        (point_distance_3d(0, 0, 0, vec3[0], vec3[1], vec3[2]) * point_distance_3d(0, 0, 0, value[0], value[1], value[2]))
+        dot_product_3d(a[0], a[1], a[2], b[0], b[1], b[2]) /
+        (point_distance_3d(0, 0, 0, a[0], a[1], a[2]) * point_distance_3d(0, 0, 0, b[0], b[1], b[2]))
     );
 }
 
+/**
+ * Calculates the cross product of two vectors, generating a vector perpendicular to the plane of the first two.
+ * The cross product:
+ *    - is anti-commutative, where reversing the operands will negate the result
+ *    - will produce the zero vector for vectors that are parallel
+ *    - may or may not produce a vector with a magnitude of 1, and you might want to normalize the result afterwards
+ * @param {array<real>} a The first vec3
+ * @param {array<real>} b The second vec3
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
 function ddd_vec3_cross(a, b, out = array_create(3)) {
     out[0] = a[1] * b[2] - b[1] * a[2];
     out[1] = a[2] * b[0] - b[2] * a[0];
@@ -257,25 +509,42 @@ function ddd_vec3_cross(a, b, out = array_create(3)) {
     return out;
 };
 
-function ddd_vec3_approach(vec3, target, amount, out = array_create(3)) {
-    var total_dist = point_distance_3d(target[0], target[1], target[2], vec3[0], vec3[1], vec3[2]);
+/**
+ * Move one vector towards another by an exact amount, while never overshooting.
+ * @param {array<real>} a The vec3 to move from
+ * @param {array<real>} b The vec3 to move to
+ * @param {real} amount The distance to move `a` towards `b`
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
+function ddd_vec3_approach(abs(), b, amount, out = array_create(3)) {
+    var total_dist = point_distance_3d(b[0], b[1], b[2], a[0], a[1], a[2]);
     var dist = max(total_dist - amount, 0);
     var f = dist / total_dist;
     
-    out[@ 0] = lerp(target[0], vec3[0], f);
-    out[@ 1] = lerp(target[1], vec3[1], f);
-    out[@ 2] = lerp(target[2], vec3[2], f);
+    out[@ 0] = lerp(b[0], a[0], f);
+    out[@ 1] = lerp(b[1], a[1], f);
+    out[@ 2] = lerp(b[2], a[2], f);
     
     return out;
 }
 
-function ddd_vec3_slerp(vec3, target, amount, out = array_create(3)) {
-    var dot = dot_product_3d_normalized(vec3[0], vec3[1], vec3[2], target[0], target[1], target[2]);
+/**
+ * Interpolates between two vectors using spherical interpolation. This can be used for things such as smoothly rotating an object, or a view matrix.
+ * Yes, it's really called that: https://en.wikipedia.org/wiki/Slerp
+ * @param {array<real>} a The vec3 to slerp from
+ * @param {array<real>} b The vec3 to slerp to
+ * @param {real} amount The normalized percentage to slerp from a to b; values outside the range of [0, 1] will extrapolate instead
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
+function ddd_vec3_slerp(a, b, amount, out = array_create(3)) {
+    var dot = dot_product_3d_normalized(a[0], a[1], a[2], b[0], b[1], b[2]);
     var theta = arccos(dot) * amount;
-    var relative_sub = ddd_vec3_sub(target, vec3);
+    var relative_sub = ddd_vec3_sub(b, a);
     var relative_product = ddd_vec3_mul(relative_sub, dot);
     ddd_vec3_normalize(relative_product, relative_product);
-    var relative_cos_product = ddd_vec3_mul(vec3, cos(theta));
+    var relative_cos_product = ddd_vec3_mul(a, cos(theta));
     var relative_sin_product = ddd_vec3_mul(relative_product, sin(theta));
     return ddd_vec3_add(relative_cos_product, relative_sin_product, out);
 }
