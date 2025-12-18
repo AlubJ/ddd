@@ -517,7 +517,7 @@ function ddd_vec3_cross(a, b, out = array_create(3)) {
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
  */
-function ddd_vec3_approach(abs(), b, amount, out = array_create(3)) {
+function ddd_vec3_approach(a, b, amount, out = array_create(3)) {
     var total_dist = point_distance_3d(b[0], b[1], b[2], a[0], a[1], a[2]);
     var dist = max(total_dist - amount, 0);
     var f = dist / total_dist;
@@ -547,5 +547,26 @@ function ddd_vec3_slerp(a, b, amount, out = array_create(3)) {
     var relative_cos_product = ddd_vec3_mul(a, cos(theta));
     var relative_sin_product = ddd_vec3_mul(relative_product, sin(theta));
     return ddd_vec3_add(relative_cos_product, relative_sin_product, out);
+}
+
+/**
+ * Rotates a vector around an axis. Useful for simple vector rotation, but for more complicated operations you might instead want quaternions.
+ * https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula
+ * @param {array} vec3 The vector to rotate around an axis
+ * @param {array} axis The axis to rotate the vector around
+ * @param {real} angle The angle to rotate the vector around the axis by
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ */
+function ddd_vec3_rotate(vec3, axis, angle, out = array_create(3)) {
+    var cosine = dcos(angle);
+    var sine = dsin(angle);
+    
+    var dot = dot_product_3d(vec3[0], vec3[1], vec3[2], axis[0], axis[1], axis[2]) * (1 - cosine);
+    out[0] = (vec3[0] * cosine) + (axis[1] * vec3[2] - vec3[1] * axis[2]) * sine + (axis[0] * dot);
+    out[1] = (vec3[1] * cosine) + (axis[2] * vec3[0] - vec3[2] * axis[0]) * sine + (axis[1] * dot);
+    out[2] = (vec3[2] * cosine) + (axis[0] * vec3[1] - vec3[0] * axis[1]) * sine + (axis[2] * dot);
+    
+    return out;
 }
 #endregion
